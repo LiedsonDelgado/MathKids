@@ -13,7 +13,7 @@ export type KidsGameState = {
     display: string,
     firstValue: number;
     secondValue: number;
-    operator: string|null,
+    operator: '+'|'-'|'*'|'/'|null,
 
     kidPlayer: Player,
     timeLeft: Timer,
@@ -63,8 +63,28 @@ export function subractLives(playerObj: Player,hp: number): Player{
     //(...)
 }
 
-export function generateRandomValues(): KidsGameState{ //gera valores aleatorios para firstValue e secondValue (ex: firstValue "+" ou "-" ou "*" ou "/" secondValue)
-    //(...)
+export function generateRandomQuestions(op: string ): KidsGameState{ //gera valores aleatorios para firstValue e secondValue (ex: firstValue "+" ou "-" ou "*" ou "/" secondValue)
+    const n1 = Math.floor(Math.random()*100)+1;
+    const n2 = Math.floor(Math.random()*100)+1;
+    let res = 0;
+
+    switch(op){
+        case '+':
+            res = n1+n2;
+            break;
+
+        case '-':
+            res = n1-n2;
+            break;
+
+        case '*':
+            res = n1*n2;
+            break;
+
+        case '/':
+            res = n1/n2;
+            break;
+    }
 }
 
 export function validateAswer(): KidsGameState{
